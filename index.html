@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Generative Tarot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <div class="header-ornament">✦ ✦ ✦</div>
+      <h1>The Generative Tarot</h1>
+      <p class="subtitle">Archetypal computation — infinite variations, same ancient truth</p>
+      <div class="header-ornament">✦ ✦ ✦</div>
+    </header>
+
+    <nav id="main-nav">
+      <button class="nav-btn active" data-section="reading">Reading</button>
+      <button class="nav-btn" data-section="gallery">Deck Gallery</button>
+      <button class="nav-btn" data-section="about">About</button>
+    </nav>
+
+    <section id="reading" class="section active">
+      <div class="reading-controls">
+        <div class="spread-selector">
+          <span class="control-label">Spread:</span>
+          <button class="spread-btn active" data-spread="single">Single</button>
+          <button class="spread-btn" data-spread="three">Three Card</button>
+          <button class="spread-btn" data-spread="celtic">Celtic Cross</button>
+        </div>
+        <div class="seed-row">
+          <span class="control-label">Seed:</span>
+          <input type="number" id="seed-input" placeholder="auto" min="0" max="999999">
+          <span class="seed-hint">same seed = same reading</span>
+        </div>
+        <button id="draw-btn" class="draw-button">
+          <span class="draw-btn-icon">☽</span> Draw Cards
+        </button>
+      </div>
+
+      <div id="spread-area">
+        <div id="spread-label-row"></div>
+        <div id="spread-cards"></div>
+      </div>
+
+      <div id="interpretation-panel" class="hidden">
+        <div id="interpretation-content"></div>
+      </div>
+    </section>
+
+    <section id="gallery" class="section hidden">
+      <div class="gallery-controls">
+        <button class="filter-btn active" data-filter="major">Major Arcana</button>
+        <button class="filter-btn" data-filter="cups">Cups</button>
+        <button class="filter-btn" data-filter="wands">Wands</button>
+        <button class="filter-btn" data-filter="swords">Swords</button>
+        <button class="filter-btn" data-filter="pentacles">Pentacles</button>
+      </div>
+      <div id="gallery-seed-row">
+        <span class="control-label">Gallery Seed:</span>
+        <input type="number" id="gallery-seed" placeholder="auto" min="0" max="999999">
+        <button id="gallery-seed-btn" class="small-btn">Apply</button>
+      </div>
+      <div id="gallery-grid"></div>
+    </section>
+
+    <section id="about" class="section hidden">
+      <div class="about-content">
+        <h2>About This Deck</h2>
+        <p>The Generative Tarot is a procedurally-rendered deck built with p5.js. Every card is drawn algorithmically — no static images, only mathematics and code.</p>
+        <h3>How It Works</h3>
+        <p>Each card uses a seeded pseudo-random number generator. A given seed always produces the same visuals, making readings reproducible. Different seeds yield visual variations within each card's archetypal grammar.</p>
+        <h3>The 78 Cards</h3>
+        <ul>
+          <li><strong>22 Major Arcana</strong> — The Fool through The World. Each has a unique geometric motif encoding its symbolic meaning.</li>
+          <li><strong>56 Minor Arcana</strong> — Four suits (Cups, Wands, Swords, Pentacles) of 14 cards each.</li>
+        </ul>
+        <h3>Spreads</h3>
+        <ul>
+          <li><strong>Single Card</strong> — A daily draw or focused question</li>
+          <li><strong>Three Card</strong> — Past · Present · Future</li>
+          <li><strong>Celtic Cross</strong> — Ten-card comprehensive reading</li>
+        </ul>
+        <h3>Open Source</h3>
+        <p>Fork it, remix it, build your own variant. The algorithm is the artist's hand.</p>
+        <div class="about-ornament">✦ ☽ ✦</div>
+      </div>
+    </section>
+  </div>
+
+  <div id="card-modal" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-inner">
+      <button class="modal-close">✕</button>
+      <div id="modal-card-canvas"></div>
+      <div id="modal-card-info"></div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/renderer.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
